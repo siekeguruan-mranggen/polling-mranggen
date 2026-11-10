@@ -135,7 +135,7 @@
             </form>
         </div>
 
-        <!-- Admin Panel (Logged In) dengan Pengumuman Bertahap & Rekap Ditutup -->
+        <!-- Admin Panel (Logged In) dengan Pengumuman Bertahap (Juara 1 di Atas) -->
         <div v-if="isAdminLoggedIn" class="bright-card rounded-3xl p-6 shadow-2xl border-2 border-blue-300 space-y-6">
             <div class="flex justify-between items-center border-b border-slate-200 pb-4">
                 <h2 class="text-base font-extrabold text-blue-900">👑 Panel Admin & Panggung LCD</h2>
@@ -145,7 +145,7 @@
             <!-- Kontrol Panggung Dramatis Bertahap -->
             <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 text-white shadow-xl space-y-3 text-center">
                 <h3 class="text-xs font-extrabold uppercase tracking-widest text-amber-100">🎬 Kontrol Pengumuman Pemenang</h3>
-                <p class="text-xs font-medium">Buka hasil juara satu persatu secara dramatis di layar LCD!</p>
+                <p class="text-xs font-medium">Buka hasil juara secara dramatis di layar LCD!</p>
                 
                 <div class="grid grid-cols-3 gap-2 pt-1">
                     <button @click="revealStep = 1; playSound();" 
@@ -166,7 +166,7 @@
                 </button>
             </div>
 
-            <!-- Area Tampilan Hasil di Layar LCD -->
+            <!-- Area Tampilan Hasil di Layar LCD (Juara 1 di Paling Atas) -->
             <div class="space-y-4">
                 <h3 class="text-xs font-extrabold text-slate-500 uppercase tracking-wider">🏆 Papan Panggung LCD</h3>
                 
@@ -174,19 +174,19 @@
                 <div v-if="revealStep === 0" class="text-center py-8 px-4 bg-slate-900/5 rounded-2xl border-2 border-dashed border-slate-300 space-y-2">
                     <div class="text-3xl">🎭</div>
                     <h4 class="text-sm font-extrabold text-slate-800">Menunggu Pengumuman Panggung...</h4>
-                    <p class="text-xs text-slate-500">Gunakan tombol kontrol di atas untuk membunyikan efek suara dan membuka juara satu persatu.</p>
+                    <p class="text-xs text-slate-500">Gunakan tombol kontrol di atas untuk membunyikan efek suara dan membuka juara.</p>
                 </div>
 
-                <!-- Juara 3 Terbuka -->
-                <div v-if="revealStep >= 1" class="flex justify-between items-center p-4 rounded-2xl bg-gradient-to-r from-amber-50 via-orange-50 to-amber-100 border-2 border-orange-300 shadow-md animate-pop">
+                <!-- Juara 1 Terbuka (Paling Atas & Paling Megah) -->
+                <div v-if="revealStep >= 3" class="flex justify-between items-center p-4 rounded-2xl bg-gradient-to-r from-amber-100 via-yellow-100 to-amber-200 border-2 border-yellow-400 shadow-xl animate-pop transform scale-102">
                     <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-xl bg-orange-600 text-white flex items-center justify-center text-sm font-black shadow">🥉</span>
+                        <span class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center text-sm font-black shadow">🥇</span>
                         <div>
-                            <span class="text-xs font-extrabold text-orange-800 uppercase block">Juara 3</span>
-                            <span class="text-sm font-extrabold text-slate-900">{{ sortedGroups[2]?.name }}</span>
+                            <span class="text-xs font-extrabold text-amber-800 uppercase block">👑 JUARA 1 UTAMA 👑</span>
+                            <span class="text-base font-black text-slate-900">{{ sortedGroups[0]?.name }}</span>
                         </div>
                     </div>
-                    <span class="text-xs font-black bg-orange-600 text-white px-3 py-1.5 rounded-full shadow">{{ sortedGroups[2]?.votes }} Suara</span>
+                    <span class="text-xs font-black bg-amber-500 text-white px-3 py-1.5 rounded-full shadow">{{ sortedGroups[0]?.votes }} Suara</span>
                 </div>
 
                 <!-- Juara 2 Terbuka -->
@@ -201,16 +201,16 @@
                     <span class="text-xs font-black bg-slate-500 text-white px-3 py-1.5 rounded-full shadow">{{ sortedGroups[1]?.votes }} Suara</span>
                 </div>
 
-                <!-- Juara 1 Terbuka (Paling Megah) -->
-                <div v-if="revealStep >= 3" class="flex justify-between items-center p-4 rounded-2xl bg-gradient-to-r from-amber-100 via-yellow-100 to-amber-200 border-2 border-yellow-400 shadow-xl animate-pop transform scale-102">
+                <!-- Juara 3 Terbuka -->
+                <div v-if="revealStep >= 1" class="flex justify-between items-center p-4 rounded-2xl bg-gradient-to-r from-amber-50 via-orange-50 to-amber-100 border-2 border-orange-300 shadow-md animate-pop">
                     <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center text-sm font-black shadow">🥇</span>
+                        <span class="w-8 h-8 rounded-xl bg-orange-600 text-white flex items-center justify-center text-sm font-black shadow">🥉</span>
                         <div>
-                            <span class="text-xs font-extrabold text-amber-800 uppercase block">👑 JUARA 1 UTAMA 👑</span>
-                            <span class="text-base font-black text-slate-900">{{ sortedGroups[0]?.name }}</span>
+                            <span class="text-xs font-extrabold text-orange-800 uppercase block">Juara 3</span>
+                            <span class="text-sm font-extrabold text-slate-900">{{ sortedGroups[2]?.name }}</span>
                         </div>
                     </div>
-                    <span class="text-xs font-black bg-amber-500 text-white px-3 py-1.5 rounded-full shadow">{{ sortedGroups[0]?.votes }} Suara</span>
+                    <span class="text-xs font-black bg-orange-600 text-white px-3 py-1.5 rounded-full shadow">{{ sortedGroups[2]?.votes }} Suara</span>
                 </div>
             </div>
 
@@ -288,12 +288,12 @@
                 ]);
 
                 onMounted(() => {
-                    const deviceHasVoted = localStorage.getItem('demak_edu_device_voted_mranggen_v2');
+                    const deviceHasVoted = localStorage.getItem('demak_edu_device_voted_mranggen_v3');
                     if (deviceHasVoted === 'true') {
                         hasVoted.value = true;
                     }
 
-                    const savedVotes = localStorage.getItem('demak_edu_votes_mranggen_v2');
+                    const savedVotes = localStorage.getItem('demak_edu_votes_mranggen_v3');
                     if (savedVotes) {
                         groups.value = JSON.parse(savedVotes);
                     }
@@ -312,8 +312,8 @@
                     const group = groups.value.find(g => g.id === selectedGroup.value);
                     if (group) {
                         group.votes += 1;
-                        localStorage.setItem('demak_edu_votes_mranggen_v2', JSON.stringify(groups.value));
-                        localStorage.setItem('demak_edu_device_voted_mranggen_v2', 'true');
+                        localStorage.setItem('demak_edu_votes_mranggen_v3', JSON.stringify(groups.value));
+                        localStorage.setItem('demak_edu_device_voted_mranggen_v3', 'true');
                         hasVoted.value = true;
                     }
                 };
@@ -326,7 +326,7 @@
                     if (choice === 'yes') {
                         hasVoted.value = false;
                         selectedGroup.value = null;
-                        localStorage.removeItem('demak_edu_device_voted_mranggen_v2');
+                        localStorage.removeItem('demak_edu_device_voted_mranggen_v3');
                         showRevoteModal.value = false;
                     } else {
                         showRevoteModal.value = false;
@@ -348,8 +348,8 @@
                 const resetVotes = () => {
                     if (confirm('Yakin ingin mereset seluruh data polling dan membuka kunci perangkat?')) {
                         groups.value.forEach(g => g.votes = 0);
-                        localStorage.removeItem('demak_edu_votes_mranggen_v2');
-                        localStorage.removeItem('demak_edu_device_voted_mranggen_v2');
+                        localStorage.removeItem('demak_edu_votes_mranggen_v3');
+                        localStorage.removeItem('demak_edu_device_voted_mranggen_v3');
                         hasVoted.value = false;
                         revealStep.value = 0;
                         alert('Data berhasil direset dan perangkat diizinkan voting kembali.');
